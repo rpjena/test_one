@@ -1,0 +1,76 @@
+# ============================================================================
+# ANCHOR DATE: 2026-06-15 (Monday, trading day)
+#
+# SCENARIO PROBABILITIES (revised this anchor):
+#   A iran_2026_rapid_resolution  : 0.60  (was the tail; now base case)
+#   B iran_2026_extended_stalemate : 0.28
+#   C iran_2026_full_escalation    : 0.12
+#
+# KEY GEOPOLITICAL FACTS DRIVING ASSIGNMENT:
+#   - Jun 14: US and Iran finalised a 14-point Memorandum of Understanding
+#     (mediated by Pakistan PM Sharif); signing set for Jun 19 in Switzerland.
+#   - MoU = immediate/permanent cessation of hostilities (incl. Lebanon),
+#     end to Iranian Hormuz restrictions, lifting of US naval blockade,
+#     phased sanctions relief, ~$24bn frozen assets unfrozen, 60-day window
+#     for the unresolved nuclear file. Trump authorised immediate blockade
+#     removal; first LNG/crude tankers transiting Hormuz again.
+#   - Market confirmation: Brent ~$80-83.8 (8-week low, -4% on the day);
+#     TTF ~EUR 44.4 (5-week low); VIX ~17.7 (-9%); S&P ~7430 (above pre-war
+#     6900); DXY ~99.25 (below pre-war 103.5); 10Y ~4.45%.
+#   - Residual escalation risk: Israel-Lebanon strikes continue; Israel
+#     signals indefinite presence in seized territory (friction with MoU);
+#     nuclear file unresolved; prior "deals" failed before signature.
+#
+# DIRECTION REVISIONS FROM EMPIRICAL PRIORS TABLE:
+#   - Gold stalemate held at '-' (empirically confirmed; not reverted to '?').
+#   - No instrument direction overridden against the priors table.
+# ============================================================================
+
+iran_2026_rapid_resolution:
+  description: "Signed MoU and Hormuz reopening collapse the war-risk premium; ~20% of seaborne oil and ~20% of LNG flows normalise, idled Gulf production restarts and the energy term structure re-steepens into contango. Disinflation relief revives Fed-cut pricing and EM/petro-credit compresses, but a structural floor remains from Qatar LNG train damage and slow field restarts."
+  shock_direction_oil: "down"
+  instances:
+    - name: "Iran 2026 Rapid Resolution"
+      t0: "2026-06-15"
+      notes: >
+        MoU finalised Jun 14, signing Jun 19; blockade lifted, Hormuz reopening.
+        Brent target ~62-68 (from ~80 anchor; multi-month normalisation toward
+        the ~71 pre-war level but not below near term). TTF target ~34-38
+        (from ~44). S&P direction up (+3 to +6% from ~7430). Gold softer as
+        rate-hike fear unwinds. [WINDOW FLAG: 30-day window UNDERSTATES the
+        oil down-move; physical normalisation (mine-clearing, field restart,
+        tanker rerouting) plays out over 60-120 days, so a 30d horizon
+        captures only the first leg.] Structural caveat: Qatar LNG train
+        damage and shut-in restart lags put a floor under TTF/Brent.
+
+iran_2026_extended_stalemate:
+  description: "MoU signature slips or is only partially honoured (Israel-Lebanon strikes persist, nuclear file stalls), leaving Hormuz nominally open but traffic and insurance not normalised. War premium grinds rather than spikes; sticky energy keeps inflation hot, so central banks stay hawkish and gold is pressured by the USD/real-rate channel rather than bid as a haven."
+  shock_direction_oil: "up"
+  instances:
+    - name: "Iran 2026 Extended Stalemate"
+      t0: "2026-06-15"
+      notes: >
+        No durable signature; Hormuz partially open, war-risk insurance
+        elevated. Brent target range ~85-100 (from ~80 anchor; re-widens as
+        the deal premium that just came out goes back in). TTF ~50-62.
+        Compounding factors: Gulf floating storage drawdown, Iranian/Iraqi
+        production shut-ins persist, OVX stays elevated. Gold direction '-'
+        (stagflation + hawkish-Fed + strong-USD channel dominates the haven
+        bid; empirically confirmed). [WINDOW FLAG: 30-day window roughly
+        FAIR for this grind case; neither large over- nor under-statement.]
+
+iran_2026_full_escalation:
+  description: "MoU collapses and the US executes its threatened strikes on Iranian power plants/energy infrastructure (Kharg) while Iran mines Hormuz and attacks Gulf infrastructure. A hard chokepoint closure removes ~20% of seaborne crude and a large share of LNG, driving a disorderly oil spike, a global growth shock and a classic flight-to-quality across havens."
+  shock_direction_oil: "up"
+  instances:
+    - name: "Iran 2026 Full Escalation"
+      t0: "2026-06-15"
+      notes: >
+        Power-plant/Kharg strikes + Hormuz mining + Gulf infra attacks.
+        Brent target ~150-190 (from ~80 anchor). TTF ~90-130 on LNG
+        chokepoint. S&P direction down sharply (-12 to -20%); VIX +25 to +40
+        vol pts. Recession probability rises materially (~40-55% within 12m).
+        Gold '+' (only escalation tips the balance back to the haven bid).
+        [WINDOW FLAG: 30-day window OVERSTATES sustained stress if mines are
+        cleared quickly, but UNDERSTATES the initial gap-spike; treat the
+        30d mean as a blend of an extreme first week and partial mean-revert.]

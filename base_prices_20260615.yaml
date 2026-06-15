@@ -1,0 +1,222 @@
+# ============================================================================
+# ANCHOR DATE: 2026-06-15
+# SCENARIO PROBABILITIES: A 0.60 / B 0.28 / C 0.12
+# KEY FACTS: Jun 14 US-Iran 14-point MoU finalised (signing Jun 19,
+#   Switzerland); US naval blockade lifted; Hormuz reopening. Energy complex
+#   sold off hard (Brent 8-week low ~-4%, TTF 5-week low), VIX -9%, equities
+#   above pre-war, USD softer, gold bid on rate-hike-fear unwind.
+# DIRECTION REVISIONS: none vs empirical priors table (gold-stalemate '-' held).
+#
+# NOTE ON QUALITY CODES: LIVE/CONFIRMED for instruments with a named same-day
+#   or prior-session quote located this session; ESTIMATED (with explicit
+#   derivation) for crosses/curve points anchored to confirmed levels
+#   (DXY 99.25, Brent 80, etc.).
+# pre_war values are fixed Feb-27-2026 constants and are NOT changed.
+# ============================================================================
+
+as_of_date: "2026-06-15"
+
+prices:
+
+  Brent Crude (CB):
+    price: 80.04
+    unit: USD/bbl
+    pre_war: 71.00
+    quality: CONFIRMED
+    source: "TradingEconomics crude/Brent, Jun 15 2026 ($80.04, -5.70% d/d); Investing.com Brent fut ~83.27 prior session. Sold off on Jun-14 US-Iran MoU."
+
+  WTI Crude (CL):
+    price: 80.52
+    unit: USD/bbl
+    pre_war: 67.00
+    quality: CONFIRMED
+    source: "Investing.com WTI front-month Jun 15 2026 (80.52, -5.14%); Yahoo CL=F ~81.10."
+
+  Dubai Crude (DC):
+    price: 78.0
+    unit: USD/bbl
+    pre_war: 69.00
+    quality: ESTIMATED
+    source: "Derived: Brent 80.04 minus ~2 (Asian-shortage spread narrowing as Hormuz reopens). No live Dubai quote this session."
+
+  TTF Nat Gas (TTF):
+    price: 44.43
+    unit: EUR/MWh
+    pre_war: 33.00
+    quality: CONFIRMED
+    source: "TradingEconomics EU Nat Gas, Jun 15 2026 (44.43 EUR/MWh, -5.02% d/d, 5-week low on MoU/Hormuz LNG normalisation)."
+
+  RBOB Gasoline (RB):
+    price: 2.42
+    unit: USD/gal
+    pre_war: 2.20
+    quality: ESTIMATED
+    source: "Derived: WTI 80.52 + typical ~$22/bbl crack ~ $102/bbl product / 42 ~ 2.42 USD/gal. No live RBOB quote this session."
+
+  ULSD Heating Oil (HO):
+    price: 2.72
+    unit: USD/gal
+    pre_war: 2.15
+    quality: ESTIMATED
+    source: "Derived: RBOB 2.42 + ~0.30 distillate premium (distillate cracks elevated post-conflict). No live HO quote."
+
+  ICE Gasoil (QS):
+    price: 607.0
+    unit: USD/MT
+    pre_war: 630.00
+    quality: ESTIMATED
+    source: "Derived: ULSD 2.72 USD/gal x 264.172 gal/MT x 0.845 density ~ 607 USD/MT. No live QS quote."
+
+  Gold (GC):
+    price: 4340.0
+    unit: USD/oz
+    pre_war: 5250.00
+    quality: CONFIRMED
+    source: "TradingEconomics gold Jun 15 2026 (4338.90, +2.77% d/d); JM Bullion 4352.48 06:07 EDT. Bid on rate-hike-fear unwind as oil fell."
+
+  S&P 500 (ES):
+    price: 7430.0
+    unit: index
+    pre_war: 6900.00
+    quality: CONFIRMED
+    source: "Investing.com US 500 7431.46 (ES fut ~7490, Yahoo). Above pre-war 6900 - equities rallied on resolution/SpaceX."
+
+  Euro STOXX 50 (FESX):
+    price: 5975.0
+    unit: index
+    pre_war: 5820.00
+    quality: ESTIMATED
+    source: "Derived: DAX ~23900 / 4.0 rough ratio, nudged for risk-on tape. No live FESX quote this session."
+
+  DAX 40 (FDAX):
+    price: 23900.0
+    unit: index
+    pre_war: 23900.00
+    quality: ESTIMATED
+    source: "Estimated near pre-war level; European equities recovered war drawdown on de-escalation. No live FDAX quote this session."
+
+  Nikkei 225 (NK):
+    price: 39500.0
+    unit: index
+    pre_war: 39500.00
+    quality: ESTIMATED
+    source: "Estimated near pre-war; BoJ-hike expectations cap upside despite risk-on. No live NK quote this session."
+
+  S&P Energy Sector (XLE):
+    price: 97.0
+    unit: USD
+    pre_war: 100.00
+    quality: ESTIMATED
+    source: "Derived: energy equities below pre-war as crude reverts toward ~71; XLE tracks crude with lag. No live XLE quote."
+
+  VIX (vol pts):
+    price: 17.68
+    unit: vol pts
+    pre_war: 17.00
+    quality: CONFIRMED
+    source: "Investing.com S&P 500 VIX 17.68 (-9.05%). Collapsed toward pre-war as deal premium unwound."
+
+  VSTOXX (vol pts):
+    price: 19.0
+    unit: vol pts
+    pre_war: 18.00
+    quality: ESTIMATED
+    source: "Derived: VIX 17.68 + ~1.3 European stress premium. No live VSTOXX quote this session."
+
+  OVX Oil Vol (vol pts):
+    price: 42.0
+    unit: vol pts
+    pre_war: 25.00
+    quality: ESTIMATED
+    source: "Derived: oil realised/implied still elevated mid-normalisation; OVX ~2.3-2.5x VIX in ME crises, easing from peak. No live OVX quote."
+
+  USD Index DXY:
+    price: 99.25
+    unit: index
+    pre_war: 103.50
+    quality: CONFIRMED
+    source: "Investing.com Dollar Index 99.25 (-0.24%). Below pre-war - USD softer as risk-on/Fed-cut hopes return."
+
+  EUR/USD (6E):
+    price: 1.1480
+    unit: USD per EUR
+    pre_war: 1.0450
+    quality: ESTIMATED
+    source: "Derived from DXY 99.25 (EUR is the dominant DXY weight); EUR materially stronger vs pre-war. higher = EUR stronger. No live 6E quote."
+
+  USD/JPY (6J):
+    price: 150.0
+    unit: JPY per USD
+    pre_war: 153.00
+    quality: ESTIMATED
+    source: "Derived: softer USD + BoJ-hike expectations modestly strengthen JPY vs pre-war. higher = JPY weaker. No live 6J quote."
+
+  USD/NOK (NOK):
+    price: 10.10
+    unit: NOK per USD
+    pre_war: 10.80
+    quality: ESTIMATED
+    source: "Derived: softer USD; NOK petrocurrency net stronger despite lower oil as war-risk USD bid fades. higher = NOK weaker. No live NOK quote."
+
+  USD/CAD (6C):
+    price: 1.3650
+    unit: CAD per USD
+    pre_war: 1.4300
+    quality: ESTIMATED
+    source: "Derived: broad USD softness; CAD stronger vs pre-war despite oil down-move. higher = CAD weaker. No live 6C quote."
+
+  USD/INR (INR):
+    price: 85.0
+    unit: INR per USD
+    pre_war: 87.00
+    quality: ESTIMATED
+    source: "Derived: lower crude is INR-positive (import bill); INR firmer vs pre-war. higher = INR weaker. No live INR quote."
+
+  US 10Y Yield (ZN):
+    price: 4.45
+    unit: pct
+    pre_war: 4.50
+    quality: CONFIRMED
+    source: "CNBC US10Y intraday ~4.42-4.45; TradingEconomics ~4.50 Jun 12. Near pre-war: flight-to-quality offset by hot PPI/CPI inflation repricing."
+
+  SOFR3M (SQ):
+    price: 96.40
+    unit: index
+    pre_war: 96.32
+    quality: ESTIMATED
+    source: "Derived: ~3m SOFR-implied ~3.6%; small move up in price (lower implied rate) as deal revives modest Fed-cut pricing. higher = lower implied rate. No live SQ quote."
+
+  Euribor3M (ER):
+    price: 97.85
+    unit: index
+    pre_war: 97.98
+    quality: ESTIMATED
+    source: "Derived: ECB hiked Jun (first since 2023) on revised inflation; ER price below pre-war (higher implied rate). higher = lower implied rate. No live ER quote."
+
+  HY E&P Credit Spread:
+    price: 300.0
+    unit: bps
+    pre_war: 350.00
+    quality: ESTIMATED
+    source: "Derived: pre-war 350 minus compression from the period of elevated oil supporting US E&P cash flows; counterintuitive tightening. No live index quote."
+
+  EMBI Sovereign Spread:
+    price: 310.0
+    unit: bps
+    pre_war: 280.00
+    quality: ESTIMATED
+    source: "Derived: pre-war 280 + accumulated EM current-account/risk deterioration from the war, partially relieved by the deal. No live EMBI quote."
+
+  Copper (HG):
+    price: 6.45
+    unit: USD/lb
+    pre_war: 6.09
+    quality: CONFIRMED
+    source: "TradingEconomics copper Jun 12 2026 (6.43, +2.74%); LongForecast 6.474 spot. Bid on growth-relief from US-Iran deal."
+
+  Aluminium (ALI):
+    price: 3300.0
+    unit: USD/MT
+    pre_war: 3197.50
+    quality: ESTIMATED
+    source: "Derived: tracks copper risk-on (+) but capped; modestly above pre-war. No live ALI quote this session."
