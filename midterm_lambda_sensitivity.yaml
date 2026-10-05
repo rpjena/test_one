@@ -1,0 +1,453 @@
+meta:
+  name: us_midterm_2026_lambda_sensitivity
+  anchor_date: '2026-10-01'
+  election_date: '2026-11-03'
+  horizon: T+1
+  units: z in sigma units of today's 1-day vol (SPX 1.03%, UST10Y 6bp, DXY 0.45%, VIX 1.3pt)
+  regime: reflation (expert prior, v3)
+  formula: u = x(s) - lambda*E[x];  z_10y = B_10y.u + relief*r_10y;  z_i = B_i.u + relief*r_i + gamma_i*z_10y
+  lambda: 'share of outcome already priced: 0 = unpriced (BofA lens), 1 = fully priced at prediction-market odds'
+  relief: uncertainty-resolution vol crush, common to all outcomes
+  sign_rule: z > 0.25 -> up, z < -0.25 -> down, else flat
+  source_file: midterm_lambda_sensitivity.xlsx
+inputs:
+  priors:
+    RR: 0.0766
+    DD: 0.607
+    RD: 0.008
+    DR: 0.3085
+  priors_source: DeFi Rate avg Kalshi/Polymarket, 2026-09-28
+  policy_state:
+    RR:
+      FISC: 1
+      TRADE: 1
+      INST: 1
+      POL: 0
+      REG: 1
+    DD:
+      FISC: -0.2
+      TRADE: -0.1
+      INST: -0.6
+      POL: 1
+      REG: -0.4
+    RD:
+      FISC: 0
+      TRADE: 0.2
+      INST: -0.6
+      POL: 0.4
+      REG: 0.2
+    DR:
+      FISC: 0
+      TRADE: 0.3
+      INST: 0.5
+      POL: 0.6
+      REG: 0.2
+  priced_in_E:
+    FISC: -0.0448
+    TRADE: 0.11
+    INST: -0.1381
+    POL: 0.7952
+    REG: -0.1029
+  loadings:
+    SPX:
+      FISC: 0.7
+      TRADE: -0.6
+      INST: -0.2
+      POL: -0.6
+      REG: 0.9
+      relief: 0.5
+      gamma_10y: 0.1
+    UST10Y:
+      FISC: 2.5
+      TRADE: 0.3
+      INST: 0.9
+      POL: -0.3
+      REG: 0.2
+      relief: 0.2
+      gamma_10y: 0
+    DXY:
+      FISC: 0.7
+      TRADE: 0.5
+      INST: -1
+      POL: -0.3
+      REG: 0.1
+      relief: 0
+      gamma_10y: 0
+    VIX:
+      FISC: -0.3
+      TRADE: 0.5
+      INST: 0.6
+      POL: 1
+      REG: -0.4
+      relief: -1
+      gamma_10y: 0
+grid:
+- lambda: 0
+  relief: false
+  case: tail_stress
+  DD:
+    equities:
+      proxy: SPX
+      z: -1.06
+      sign: ↓
+    rates_10y:
+      proxy: UST10Y
+      z: -1.45
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.07
+      sign: →
+    vol:
+      proxy: VIX
+      z: 0.81
+      sign: ↑
+  RR:
+    equities:
+      proxy: SPX
+      z: 1.19
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 3.9
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.3
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: 0.4
+      sign: ↑
+- lambda: 0
+  relief: true
+  DD:
+    equities:
+      proxy: SPX
+      z: -0.55
+      sign: ↓
+    rates_10y:
+      proxy: UST10Y
+      z: -1.25
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.07
+      sign: →
+    vol:
+      proxy: VIX
+      z: -0.19
+      sign: →
+  RR:
+    equities:
+      proxy: SPX
+      z: 1.71
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.1
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.3
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: -0.6
+      sign: ↓
+- lambda: 0.25
+  relief: false
+  DD:
+    equities:
+      proxy: SPX
+      z: -0.89
+      sign: ↓
+    rates_10y:
+      proxy: UST10Y
+      z: -1.33
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.09
+      sign: →
+    vol:
+      proxy: VIX
+      z: 0.6
+      sign: ↑
+  RR:
+    equities:
+      proxy: SPX
+      z: 1.36
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.02
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.32
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: 0.19
+      sign: →
+- lambda: 0.25
+  relief: true
+  DD:
+    equities:
+      proxy: SPX
+      z: -0.37
+      sign: ↓
+    rates_10y:
+      proxy: UST10Y
+      z: -1.13
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.09
+      sign: →
+    vol:
+      proxy: VIX
+      z: -0.4
+      sign: ↓
+  RR:
+    equities:
+      proxy: SPX
+      z: 1.88
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.22
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.32
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: -0.81
+      sign: ↓
+- lambda: 0.5
+  relief: false
+  DD:
+    equities:
+      proxy: SPX
+      z: -0.72
+      sign: ↓
+    rates_10y:
+      proxy: UST10Y
+      z: -1.22
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.11
+      sign: →
+    vol:
+      proxy: VIX
+      z: 0.4
+      sign: ↑
+  RR:
+    equities:
+      proxy: SPX
+      z: 1.53
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.13
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.34
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: -0.01
+      sign: →
+- lambda: 0.5
+  relief: true
+  DD:
+    equities:
+      proxy: SPX
+      z: -0.2
+      sign: →
+    rates_10y:
+      proxy: UST10Y
+      z: -1.02
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.11
+      sign: →
+    vol:
+      proxy: VIX
+      z: -0.6
+      sign: ↓
+  RR:
+    equities:
+      proxy: SPX
+      z: 2.05
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.33
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.34
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: -1.01
+      sign: ↓
+- lambda: 0.75
+  relief: false
+  DD:
+    equities:
+      proxy: SPX
+      z: -0.55
+      sign: ↓
+    rates_10y:
+      proxy: UST10Y
+      z: -1.1
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.14
+      sign: →
+    vol:
+      proxy: VIX
+      z: 0.19
+      sign: →
+  RR:
+    equities:
+      proxy: SPX
+      z: 1.7
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.25
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.37
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: -0.22
+      sign: →
+- lambda: 0.75
+  relief: true
+  case: central
+  DD:
+    equities:
+      proxy: SPX
+      z: -0.03
+      sign: →
+    rates_10y:
+      proxy: UST10Y
+      z: -0.9
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.14
+      sign: →
+    vol:
+      proxy: VIX
+      z: -0.81
+      sign: ↓
+  RR:
+    equities:
+      proxy: SPX
+      z: 2.22
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.45
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.37
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: -1.22
+      sign: ↓
+- lambda: 1
+  relief: false
+  DD:
+    equities:
+      proxy: SPX
+      z: -0.38
+      sign: ↓
+    rates_10y:
+      proxy: UST10Y
+      z: -0.99
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.16
+      sign: →
+    vol:
+      proxy: VIX
+      z: -0.01
+      sign: →
+  RR:
+    equities:
+      proxy: SPX
+      z: 1.88
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.36
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.39
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: -0.42
+      sign: ↓
+- lambda: 1
+  relief: true
+  DD:
+    equities:
+      proxy: SPX
+      z: 0.14
+      sign: →
+    rates_10y:
+      proxy: UST10Y
+      z: -0.79
+      sign: ↓
+    usd:
+      proxy: DXY
+      z: 0.16
+      sign: →
+    vol:
+      proxy: VIX
+      z: -1.01
+      sign: ↓
+  RR:
+    equities:
+      proxy: SPX
+      z: 2.4
+      sign: ↑
+    rates_10y:
+      proxy: UST10Y
+      z: 4.56
+      sign: ↑
+    usd:
+      proxy: DXY
+      z: 0.39
+      sign: ↑
+    vol:
+      proxy: VIX
+      z: -1.42
+      sign: ↓
+notes:
+- 'DD equities: z < 0 for lambda < ~0.8 with relief; clear the 0.25 threshold only for lambda <= ~0.4. Without relief: down
+  at every lambda.'
+- DD vol up requires lambda ~0 and no relief.
+- 'DD USD never down: Senate block on Fed nominees (INST) offsets lower rates; channel difference vs BofA.'
+- RR equities, 10y, USD up at every lambda; RR vol up only with lambda = 0 and no relief.
+- 'Against lambda = 0: Oct-2024 ''Trump trade'' tracked Polymarket odds before the vote.'
